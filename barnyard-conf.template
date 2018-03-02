@@ -1,0 +1,39 @@
+
+# set the appropriate paths to the file(s) your Snort process is using.
+#
+config reference_file:      /etc/snort/reference.config
+config classification_file: /etc/snort/classification.config
+config gen_file:            /etc/snort/gen-msg.map
+config sid_file:            /etc/snort/sid-msg.map
+
+# define the full waldo filepath.
+#
+#config waldo_file: {{ waldofile }}
+
+# set the archive directory for use with continous mode
+#
+#config archivedir: {{ archivedir }}
+
+# when in operating in continous mode, only process new records and ignore any
+# existing unified files
+#
+#config process_new_records_only
+#{{ process_new_records_only }}
+# Step 2: setup the input plugins
+# this is not hard, only unified2 is supported ;)
+input unified2
+# database: log to a variety of databases
+# ----------------------------------------------------------------------------
+#
+# Purpose: This output module provides logging ability to a variety of databases
+# See doc/README.database for additional information.
+#
+# Examples:
+#   output database: log, mysql, user=root password=test dbname=db host=localhost
+#   output database: alert, postgresql, user=snort dbname=snort
+#   output database: log, odbc, user=snort dbname=snort
+#   output database: log, mssql, dbname=snort user=snort password=test
+#   output database: log, oracle, dbname=snort user=snort password=test
+#
+
+output database: {{ dbtype }}, mysql, user={{ dbuser }} password={{ dbpass }} dbname={{ dbname }} host={{ dbhost }}
