@@ -57,6 +57,10 @@ args_archive=''
 args_file=''
 args_spool=''
 args_event=''
+args_hostname=''
+if [ -n "$HOSTNAME" ]; then
+	args_hostname="-h $HOSTNAME"
+fi
 if [ -n "$WALDO_FILE" ]; then
 	touch "$WALDO_FILE"
 	args_waldo="-w $WALDO_FILE"
@@ -89,4 +93,4 @@ if [ -z "$MYSQL_USER" ] || [ -z "$MYSQL_PASSWORD" ] || [ -z "$MYSQL_HOST" ] || [
 fi
 
 
-barnyard2 -c /usr/local/etc/barnyard2.conf $args_waldo $args_archive $args_file $args_spool $args_event $@
+barnyard2 -c /usr/local/etc/barnyard2.conf $args_waldo $args_archive $args_file $args_spool $args_event $args_hostname $@
