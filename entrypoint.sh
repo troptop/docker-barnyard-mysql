@@ -58,6 +58,7 @@ args_file=''
 args_spool=''
 args_event=''
 if [ -n "$WALDO_FILE" ]; then
+	touch "$WALDO_FILE"
 	args_waldo="-w $WALDO_FILE"
 fi
 if [ -n "$ARCHIVE_DIR" ]; then
